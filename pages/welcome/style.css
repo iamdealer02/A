@@ -1,0 +1,62 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .logo{
+    display:block ; 
+    margin-left: auto;  
+    margin-right: auto;  
+    height: 12rem; 
+    width:16rem;
+    margin-bottom: 0px;
+    
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 36px;
+    color: #333;
+
+}
+
+/* population and attendance sections */
+.population,
+.attendance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* population and attendance lists */
+.population ul,
+.attendance ul {
+    list-style: none;
+    margin-left: 9rem;
+    padding: 0;
+    width: 50%;
+}
+
+/* population and attendance images */
+.population img,
+.attendance img {
+    width: 40%;
+    height: auto;
+    margin-left: 4rem;
+    margin-right: 6rem;
+}
+
+
+
+
+.blue{
+    display: block;
+    background-color: rgb(64, 102, 114);
+    color: white;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
