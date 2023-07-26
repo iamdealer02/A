@@ -6,9 +6,6 @@ $dbname = "epita";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// $prog = $_GET['prog'];
-// $year = $_GET['year'];
-// $per = $_GET['per'];
 
 function get_students_by_population($prog, $year, $per) {
     global $conn;
@@ -32,23 +29,40 @@ function get_students_by_population($prog, $year, $per) {
     }
     $rows = array();
     while ($row = $result->fetch_assoc()) {
-        echo("<tr>
-        <td>".$row['CONTACT_FIRST_NAME']."</td>
-        <td>".$row['CONTACT_LAST_NAME']."</td>
-        <td>".$row['STUDENT_EPITA_EMAIL']."</td>
-        <td>".$row['Passed_Total']."</td>
-    </tr>");
+        echo "<tr> 
+            <td>".(isset($_POST['edit']) && $_POST['student_email'] == $row['STUDENT_EPITA_EMAIL'] ?
+                '<input type="text" name="new_firstname" value="'.$row['CONTACT_FIRST_NAME'].'" form="checkform">' :
+                $row['CONTACT_FIRST_NAME'])."</td>
+            <td>".(isset($_POST['edit']) && $_POST['student_email'] == $row['STUDENT_EPITA_EMAIL'] ?
+                '<input type="text" name="new_lastname" value="'.$row['CONTACT_LAST_NAME'].'" form="checkform">' :
+                $row['CONTACT_LAST_NAME'])."</td>
+            <td>".$row['STUDENT_EPITA_EMAIL']."</td>
+            <td>".$row['Passed_Total']."</td>
+            <td>";
+    
+        echo (isset($_POST['edit']) && $_POST['student_email'] == $row['STUDENT_EPITA_EMAIL']) ?
+            "<form id='checkform' name='checkform' action='../../actions/populationpage/edit_student.php' method='POST'><input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'><button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'><img src='../../connectionquery/images/checked.png' style='width: 30px; height: 30px;'></button></form>" :
+            "<form method='POST'> 
+            <input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'><button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'>
+            <img src='../../connectionquery/images/pen.png' style='width: 30px; height: 30px;'>
+            </button></form>
+            
+            <form id='deleteform' action='../../actions/populationpage/delete_student.php?email=".$row['STUDENT_EPITA_EMAIL']."' method='POST'>
+                <button type='submit' name='delete' class='delete' onclick='return confirmation()' style='border: none; background-color: transparent;'>
+                    <img src='../../connectionquery/images/delete.png' style='width: 30px; height: 30px;'>
+                </button>
+            </form>
+            </td>
+        </tr>";
     }
+
+    echo("<script>
+    function confirmation() {
+        return confirm('Are you sure you want to delete this student?');
+    }
+    </script>");
 
     return $rows;
 }
-
-// Call the function to get the population data
-
-
-// Now, the '$population_data' array contains the data fetched from the query as dictionaries.
-// You can use this array to process the data as needed.
-
-// Display the array using print_r
-
 ?>
+

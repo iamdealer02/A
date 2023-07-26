@@ -18,8 +18,5 @@ function login_admin(){
             // echo('$_SESSION['error']');
         }
     };   
-
 }
-
-
 ?>

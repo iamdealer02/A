@@ -26,7 +26,7 @@ if(!isset($_SESSION['id'])){
 </head>
 <body onload="updateVisitDate()">
     <div class="text-right p-2">
-        <form class="form-inline" method="post" action="logout.php">
+        <form class="form-inline" method="post" action="../../connectionquery/logout.php">
             <button class="btn btn-outline-danger" type="submit">Logout</button>
         </form>
     </div>
@@ -67,7 +67,6 @@ if(!isset($_SESSION['id'])){
         </ul>
         <img src="%bargraph%">
     </section>
-
     <footer class="blue">
         Your last visit was on: <span id="visitDate"></span>
     </footer>

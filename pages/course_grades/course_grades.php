@@ -17,7 +17,7 @@ if(!isset($_SESSION['id'])){
 </head>
 <body>
 <div class="text-right p-2">
-        <form class="form-inline" method="post" action="logout.php">
+        <form class="form-inline" method="post" action="../../connectionquery/logout.php">
             <button class="btn btn-outline-danger" type="submit">Logout</button>
         </form>
     </div>
@@ -44,13 +44,10 @@ if(!isset($_SESSION['id'])){
             require_once '../../connectionquery/grade.php';
             $result = get_grades_by_course_and_population ($course, $progname, $yearr, $speriod);
 
-
             ?>
             
         </table>
-    </div>
-          
-    
+    </div>   
     </section>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>

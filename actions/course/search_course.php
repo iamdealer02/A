@@ -1,23 +1,30 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "1234";
-$dbname = "epita";
+function search_course(){
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    $searchValue = $_POST['searchcourse'];
+    $l = $_GET['year'];
+    $m = $_GET['period'];
+    $k = $_GET['code'];
 
-function get_courses_by_population($k) {
-    global $conn;
 
-    $sql = "SELECT p.PROGRAM_ASSIGNMENT,  p.PROGRAM_COURSE_CODE_REF, MAX(c.duration) as SESSION_COUNT
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "1234";
+    $dbname = "epita";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    $sql ="SELECT p.PROGRAM_ASSIGNMENT, p.PROGRAM_COURSE_CODE_REF, MAX(c.duration) as SESSION_COUNT
     FROM PROGRAMS p
     INNER JOIN COURSES c ON p.PROGRAM_COURSE_CODE_REF = c.COURSE_CODE
     WHERE p.PROGRAM_ASSIGNMENT = '$k'
+    AND (LOWER(TRIM(p.PROGRAM_COURSE_CODE_REF)) LIKE LOWER('%$searchValue%'))
     GROUP BY p.PROGRAM_ASSIGNMENT, p.PROGRAM_COURSE_CODE_REF
     ORDER BY p.PROGRAM_COURSE_CODE_REF";
 
 
-    // Execute the query
+
     $result = $conn->query($sql);
 
     if (!$result) {
@@ -39,6 +46,9 @@ function get_courses_by_population($k) {
         
     </tr>");
     }
+
     return $rows;
 }
+
+
 ?>
