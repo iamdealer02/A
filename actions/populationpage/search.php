@@ -7,14 +7,12 @@ function search(){
     $prog = $_GET['code'];
 
 
+    require_once '../../connectionquery/db_connection.php';
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "1234";
-    $dbname = "epita";
+    // Call the db_connect function to get the database connection object
+    $conn = db_connect();
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
+    //searcing according to  the first_name and the last_name
     $sql = "SELECT c.CONTACT_FIRST_NAME, c.CONTACT_LAST_NAME, s.STUDENT_EPITA_EMAIL,
     CONCAT(SUM(CASE WHEN ROUND((g.GRADE_SCORE * e.EXAM_WEIGHT) / e.EXAM_WEIGHT) > 10 THEN 1 ELSE 0 END), '/', COUNT(s.STUDENT_EPITA_EMAIL)) AS Passed_Total
     FROM CONTACTS c 
@@ -38,6 +36,8 @@ function search(){
     if (!$result) {
         die("Query execution failed: " . $conn->error);
     }
+    //runs the same query as the normal students query as the redirection of the query and display is completely different when pressed a search button
+    //or when viewing normally.
     $rows = array();
     while ($row = $result->fetch_assoc()) {
         echo("<tr> 

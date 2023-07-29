@@ -1,30 +1,61 @@
-.logo{
-    display:block ; 
-    margin-left: auto;  
-    margin-right: auto;  
-    height: 12rem; 
-    width:16rem;
-    margin-bottom: 0px;
+.head{
+    background-color: aliceblue;
+}
+.action{
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+}
     
-    }
-h1 {
+.logo-wrapper {
     text-align: center;
-    margin-top: 0px;
-    font-size: 36px;
-    color: #333;
-    
+    padding-top: 20px;
+    background-color: aliceblue;
+}
+.logo {
+        width: 200px;
+        height: auto;
     }
+    
+.animated-button img {
+        width: 50px;
+        height: 50px;
+        transition: transform 0.3s ease;
+    }
+    
+    .animated-button:hover img {
+        transform: scale(1.5);
+    }
+    h1 {
+        text-align: center; /* Centers the text horizontally */    
+        font-size: 32px; /* Adjust the font size as needed */
+        font-weight: bold; /* Make the text bold if desired */
+        color: #6481ad; /* Set the text color (replace #333 with the color of your choice) */
+       
+      }
+h2{
+    text-align: center;
+}
+    
 .container{
     justify-content: center;
 }
-.gogo{
-        text-align: center;
-        width: 80%;
-        height: 50%;
-        
+.table-blue {
+    background-color: #e7f3fc; /* Replace this color with your desired shade of blue */
+    font-weight: 600;
+    border: 1px solid black;
+}
+
+
+.grade{
+    font-size: 13px; /* Decrease font size */
+    text-align: center;
+    padding: 0;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.table-blue tbody tr:nth-child(odd) {
+    background-color: #d6ebfb; /* Replace this color with a slightly different shade of blue */
     
-    }
-th{
-        background-color: lightblue;
-    }
-    
+}

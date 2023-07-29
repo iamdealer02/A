@@ -1,17 +1,15 @@
 <?php
 
-    $servername= "localhost";
-    $username= "root";
-    $password ="1234";
-    $dbname= "epita";
+require_once '../../connectionquery/db_connection.php';
 
-    $conn = new mysqli($servername, $username, $password, $dbname );
+    // Call the db_connect function to get the database connection object
+    $conn = db_connect();
 
     $new_firstname = $_POST['new_firstname'];
     $new_lastname = $_POST['new_lastname'];
     $STUDENT_EPITA_EMAIL = $_POST['student_email'];
 
-
+    //updating the details of the student in every possible table.
     $sql = "UPDATE CONTACTS c
     INNER JOIN students s ON s.student_contact_ref = c.contact_email
     SET CONTACT_FIRST_NAME='".$new_firstname."' , CONTACT_LAST_NAME='".$new_lastname."'

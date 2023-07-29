@@ -7,13 +7,10 @@ function search_course(){
     $k = $_GET['code'];
 
 
+    require_once '../../connectionquery/db_connection.php';
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "1234";
-    $dbname = "epita";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Call the db_connect function to get the database connection object
+    $conn = db_connect();
 
     $sql ="SELECT p.PROGRAM_ASSIGNMENT, p.PROGRAM_COURSE_CODE_REF, MAX(c.duration) as SESSION_COUNT
     FROM PROGRAMS p

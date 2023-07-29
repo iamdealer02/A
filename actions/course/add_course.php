@@ -1,11 +1,9 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "1234";
-$dbname = "epita";
+require_once '../../connectionquery/db_connection.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Call the db_connect function to get the database connection object
+$conn = db_connect();
 
 $course_code = $_POST['session_course_ref'];
 $course_rev = $_POST['course_rev'];
@@ -34,7 +32,7 @@ if ($conn->query($sql3) === TRUE) {
 } else {
     echo "Connection error";
 }
-
+e
 $sql4 = "INSERT INTO teachers (teacher_contact_ref, teacher_epita_email, teacher_study_level) VALUES
  ('N/A', '".$teacher_epita_email."', NULL)";
 
@@ -51,11 +49,11 @@ $result_students = $conn->query($sql_students);
 
 while($row = $result_students->fetch_assoc()){
     $sql_grade = "INSERT into grades 
-    VALUES('".$row['STUDENT_EPITA_EMAIL']."', '".$course_code."', NULL, 'N/A', NULL)";
+    VALUES('".$row['STUDENT_EPITA_EMAIL']."', '".$course_code."', '".$course_rev."', 'N/A', NULL)";
     $result = $conn->query($sql_grade);
 };
 
 $conn->close();
-header("Location: " .  $_SERVER['HTTP_REFERER']);
+// header("Location: " .  $_SERVER['HTTP_REFERER']);
 
 ?>

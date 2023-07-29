@@ -1,62 +1,138 @@
+.logo-wrapper {
+    text-align: center;
+    padding-top: 10px;
+    background-color: aliceblue;
+}
+
+
+.logo {
+    width: 200px;
+    height: auto;
+}
+  /* .btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+
+  } */
+
+
+.animated-button img {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.animated-button:hover img {
+    transform: scale(1.5);
+}
+  
+  /* Change the background image on hover */
+
+
 body {
-    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    margin-left: 50%;
+    text-align: center; /* Centers the text horizontally */
+    font-size: 32px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #6481ad; /* Set the text color (replace #333 with the color of your choice) */
+  }
+  .heading {
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  /* Add margin to the logout button */
+  .heading .btn {
+    margin-left: 10px; /* Adjust this value to control the space between heading and button */
+  }
+  
+  /* Styling for h2 elements */
+  h2 {
+    display: flex; /* Use flexbox to align items inside the h2 element */
+    align-items: center;
+    text-align: center; /* Centers the text horizontally */
+    margin: 10px 0; /* Adds 10px of top and bottom margin to create some spacing */
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #555; /* Set the text color (replace #555 with the color of your choice) */
+  }
+  h2 img{
+    width: 20%;
+    margin-right: 10%;
+  }
+.contain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-  }
-  .logo{
-    display:block ; 
-    margin-left: auto;  
-    margin-right: auto;  
-    height: 12rem; 
-    width:16rem;
-    margin-bottom: 0px;
-    
+ 
 }
-
-h1 {
-    text-align: center;
-    margin-top: 0px;
-    font-size: 36px;
-    color: #333;
-
-}
-
-/* population and attendance sections */
 .population,
 .attendance {
+  max-height: 500px; /* Adjust the max-height as needed */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+    flex-direction: row;
+    width: 80%;
+    padding: 10px;
+
+}
+#populationtable,
+#coursetable{
+  font-size: 13px; /* Decrease font size */
+  font-weight: bold;
+  margin-bottom: 70px;
+  padding: 0;
+  width: 200% ;
+}
+.table-blue {
+    background-color: #e7f3fc; /* Replace this color with your desired shade of blue */
+
 }
 
-/* population and attendance lists */
-.population ul,
-.attendance ul {
-    list-style: none;
-    margin-left: 9rem;
-    padding: 0;
-    width: 50%;
+.table-blue tbody tr:nth-child(odd) {
+    background-color: #d6ebfb; /* Replace this color with a slightly different shade of blue */
+}
+.population tr:hover{
+    cursor: pointer;
+    color: rgb(135, 126, 114);
+}
+#chartContainer,
+#BarchartContainer {
+  position: relative; /* Use "relative" or "absolute" based on your layout needs */
+  margin-top: 50px; /* Adjust the top margin as needed */
+  margin-left: 100%; /* Center the container horizontally */
+  margin-right:10px;
+  width: 300px; /* Set the container width to match the canvas width */
 }
 
-/* population and attendance images */
-.population img,
-.attendance img {
-    width: 40%;
-    height: auto;
-    margin-left: 4rem;
-    margin-right: 6rem;
-}
-
-
-
-
-.blue{
-    display: block;
-    background-color: rgb(64, 102, 114);
-    color: white;
-    padding: 20px;
+footer {
+    background-color: #dae6f0;
+    padding: 10px;
+    text-align: center;
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    margin-top: 3%;
     width: 100%;
-    box-sizing: border-box;
-}
+  }
+  
+  footer span {
+    font-weight: bold;
+    color: #313538;
+    
+  }
+  
+
