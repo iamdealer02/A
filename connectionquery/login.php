@@ -8,11 +8,13 @@ function login_admin(){
         $username = $_POST['user_name'];
         $password = $_POST['password'];
         $conn = new mysqli("localhost", "root", "1234", "epita");
-        $sql = "SELECT * 
+        $sql = "SELECT firstname 
             FROM admins where username = '".$username."' and password = '".$password."' ";
         $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
         if ($result->num_rows > 0) {
             $_SESSION["id"] = $username;
+            $_SESSION["name"] = strtoupper($row['firstname']);
             header("Location: ../../index.php");
             
         } else {

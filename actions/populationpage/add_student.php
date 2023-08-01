@@ -19,7 +19,8 @@
     $program = $_GET['code'];
 
     //Inserting the new student in Contacts first
-    $sql1 = "INSERT INTO contacts (contact_email, contact_first_name, contact_last_name, contact_address, contact_city, contact_country, contact_birthdate)
+    $sql1 = "INSERT INTO contacts (contact_email, contact_first_name, contact_last_name, contact_address, 
+    contact_city, contact_country, contact_birthdate)
     VALUES ('".$email."', '".$first_name."', '".$last_name."', '".$address."', '".$city."', '".$country."', '".$birthdate."')";
 
     if ($conn->query($sql1) === TRUE) {
@@ -29,7 +30,8 @@
     }
 
     //next to the students table
-    $sql2 = "INSERT INTO students (student_epita_email, student_contact_ref, student_enrollment_status, student_population_period_ref, student_population_year_ref, student_population_code_ref)
+    $sql2 = "INSERT INTO students (student_epita_email, student_contact_ref, student_enrollment_status, 
+    student_population_period_ref, student_population_year_ref, student_population_code_ref)
     VALUES ('".$epita_email."', '".$email."', 'completed', '".$period."', '".$year."', '".$program."')";
 
     if ($conn->query($sql2) === TRUE) {
@@ -39,7 +41,8 @@
     }
 
     //Fetching all the courses in that particular program we want to add the student 
-    $sql_courses = "SELECT course_code, course_rev from courses c join programs p on c.course_code = p.program_course_code_ref where program_assignment = '".$program."'";
+    $sql_courses = "SELECT course_code, course_rev from courses c join programs p on c.course_code = p.program_course_code_ref
+     where program_assignment = '".$program."'";
     $result_courses = $conn->query($sql_courses);
 
     //running a loop through all the courses in that program:

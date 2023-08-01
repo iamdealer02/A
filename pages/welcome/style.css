@@ -91,9 +91,9 @@ body {
 }
 #populationtable,
 #coursetable{
-  font-size: 13px; /* Decrease font size */
+  font-size: 20px; /* Decrease font size */
   font-weight: bold;
-  margin-bottom: 70px;
+  margin-bottom: 1200px;
   padding: 0;
   width: 200% ;
 }

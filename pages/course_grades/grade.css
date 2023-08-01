@@ -12,6 +12,7 @@
     padding-top: 20px;
     background-color: aliceblue;
 }
+
 .logo {
         width: 200px;
         height: auto;
@@ -23,17 +24,19 @@
         transition: transform 0.3s ease;
     }
     
-    .animated-button:hover img {
-        transform: scale(1.5);
+.animated-button:hover img {
+    transform: scale(1.5);
+}
+h1 {
+    text-align: center; /* Centers the text horizontally */    
+    font-size: 32px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    color: #6481ad; /* Set the text color (replace #333 with the color of your choice) */
+    
     }
-    h1 {
-        text-align: center; /* Centers the text horizontally */    
-        font-size: 32px; /* Adjust the font size as needed */
-        font-weight: bold; /* Make the text bold if desired */
-        color: #6481ad; /* Set the text color (replace #333 with the color of your choice) */
-       
-      }
 h2{
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold;
     text-align: center;
 }
     
@@ -48,7 +51,7 @@ h2{
 
 
 .grade{
-    font-size: 13px; /* Decrease font size */
+    font-size: 15px; /* Decrease font size */
     text-align: center;
     padding: 0;
     width: 40%;

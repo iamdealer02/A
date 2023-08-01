@@ -21,13 +21,20 @@ if (isset($_SESSION['error'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
+        .logo-wrapper {
+            text-align: center;
+            padding-top: 20px;
+            background-color: aliceblue;
+        }
+        .logo {
+            width: 200px;
+            height: auto;
+        }
+                body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
             align-items: center;
             height: 100vh;
         }
@@ -39,12 +46,15 @@ if (isset($_SESSION['error'])) {
         }
 
         form {
+            margin: auto;
+            margin-top: 90px;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
+
         }
 
         h3 {
@@ -68,7 +78,7 @@ if (isset($_SESSION['error'])) {
             padding: 12px;
             border: none;
             border-radius: 20px;
-            background-color: #4CAF50;
+            background-color:#80a4c2;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
@@ -77,11 +87,16 @@ if (isset($_SESSION['error'])) {
 
         input[type="submit"]:hover,
         input[type="reset"]:hover {
-            background-color: #45a049;
+            background-color: #407b92;
         }
     </style>
 </head>
 <body>
+    
+    <div class="logo-wrapper"> <!-- Wrapper for the logo -->
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/fr/d/d8/Epita.png">
+    </div>
+    
     <form name="frmUser" method= "post" >
         <h3> ENTER YOUR LOGIN DETAILS HERE </h3>
         <h4> Username: </h4>

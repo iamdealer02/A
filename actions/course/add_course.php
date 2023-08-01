@@ -32,7 +32,7 @@ if ($conn->query($sql3) === TRUE) {
 } else {
     echo "Connection error";
 }
-e
+
 $sql4 = "INSERT INTO teachers (teacher_contact_ref, teacher_epita_email, teacher_study_level) VALUES
  ('N/A', '".$teacher_epita_email."', NULL)";
 
@@ -54,6 +54,6 @@ while($row = $result_students->fetch_assoc()){
 };
 
 $conn->close();
-// header("Location: " .  $_SERVER['HTTP_REFERER']);
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 
 ?>

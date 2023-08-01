@@ -51,9 +51,13 @@ function get_students_by_population($prog, $year, $per) {
 
     
         echo (isset($_POST['edit']) && $_POST['student_email'] == $row['STUDENT_EPITA_EMAIL']) ?
-            "<form id='checkform' name='checkform' action='../../actions/populationpage/edit_student.php' method='POST'><input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'><button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'><img src='../../connectionquery/images/checked.png' style='width: 20px; height: 20px;'></button></form>" :
+            "<form id='checkform' name='checkform' action='../../actions/populationpage/edit_student.php' method='POST'>
+            <input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'>
+            <button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'>
+            <img src='../../connectionquery/images/checked.png' style='width: 20px; height: 20px;'></button></form>" :
             "<div class='imgform'><form method='POST'> 
-            <input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'><button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'>
+            <input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'>
+            <button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'>
             <img src='../../connectionquery/images/pen.png' style='width: 20px; height: 20px;'>
             </button></form>
             

@@ -8,15 +8,18 @@ function get_grades_by_course_and_population ($course, $progname, $yearr, $speri
     $conn = db_connect();
 
     $sql = "SELECT s.STUDENT_EPITA_EMAIL, c.CONTACT_FIRST_NAME, c.CONTACT_LAST_NAME, 
-    CASE WHEN MAX(g.grade_exam_type_ref) = 'ADMIN_OVERRIDE'
-     THEN MAX(g.GRADE_SCORE) 
-     ELSE SUM(ROUND(g.GRADE_SCORE * e.EXAM_WEIGHT / e.EXAM_WEIGHT)) / COUNT(s.STUDENT_EPITA_EMAIL)
-      END AS GRADES FROM CONTACTS c 
-        INNER JOIN STUDENTS s ON s.STUDENT_CONTACT_REF = c.CONTACT_EMAIL 
-        INNER JOIN GRADES g ON g.GRADE_STUDENT_EPITA_EMAIL_REF = s.STUDENT_EPITA_EMAIL 
-        LEFT JOIN EXAMS e ON g.GRADE_COURSE_CODE_REF = e.EXAM_COURSE_CODE
-        WHERE g.GRADE_COURSE_CODE_REF = '".$course."' AND s.STUDENT_POPULATION_CODE_REF = '".$progname."' AND s.STUDENT_POPULATION_YEAR_REF = ".$yearr." AND s.STUDENT_POPULATION_PERIOD_REF = '".$speriod."'
-        GROUP BY s.STUDENT_EPITA_EMAIL, c.CONTACT_FIRST_NAME, c.CONTACT_LAST_NAME, g.grade_exam_type_ref";
+    CASE 
+        WHEN MAX(g.grade_exam_type_ref) = 'ADMIN_OVERRIDE' THEN MAX(g.GRADE_SCORE)
+        ELSE ROUND(SUM(g.GRADE_SCORE * e.EXAM_WEIGHT) / SUM(e.EXAM_WEIGHT))
+    END AS GRADES 
+    FROM CONTACTS c 
+    INNER JOIN STUDENTS s ON s.STUDENT_CONTACT_REF = c.CONTACT_EMAIL 
+    INNER JOIN GRADES g ON g.GRADE_STUDENT_EPITA_EMAIL_REF = s.STUDENT_EPITA_EMAIL 
+    LEFT JOIN EXAMS e ON g.GRADE_COURSE_CODE_REF = e.EXAM_COURSE_CODE AND g.GRADE_COURSE_REV_REF = e.EXAM_COURSE_REV
+     AND g.GRADE_EXAM_TYPE_REF = e.EXAM_TYPE
+    WHERE g.GRADE_COURSE_CODE_REF = '".$course."' AND s.STUDENT_POPULATION_CODE_REF = '".$progname."' 
+    AND s.STUDENT_POPULATION_YEAR_REF = ".$yearr."  AND s.STUDENT_POPULATION_PERIOD_REF = '".$speriod."'
+    GROUP BY s.STUDENT_EPITA_EMAIL, c.CONTACT_FIRST_NAME, c.CONTACT_LAST_NAME";
     // Execute the query
     $result = $conn->query($sql);
 
@@ -42,14 +45,16 @@ function get_grades_by_course_and_population ($course, $progname, $yearr, $speri
         */
 
         echo (isset($_POST['edit']) && $_POST['student_email'] == $row['STUDENT_EPITA_EMAIL']) ?
-            "<form id='checkform' name='checkform' action='../../actions/grades/edit_grades.php' method='POST'><input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'>
-            <button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'><img src='../../connectionquery/images/checked.png' style='width: 20px; height: 20px;'></button></form>" :
-            "<div class='imgform'><form method='POST'> 
+            "<form id='checkform' name='checkform' action='../../actions/grades/edit_grades.php?course_code=".$course."' method='POST'>
+            <input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'>
+            <button type='submit' name='check' class='check' style='border: none; background-color: transparent;'>
+            <img src='../../connectionquery/images/checked.png' style='width: 20px; height: 20px;'></button></form>" :
+            "<div class='imgform' style='display:flex; flex-direction: row; '><form method='POST'> 
             <input type='hidden' name='student_email' value='".$row['STUDENT_EPITA_EMAIL']."'><button type='submit' name='edit' class='edit' style='border: none; background-color: transparent;'>
             <img src='../../connectionquery/images/pen.png' style='width: 20px; height: 20px;'>
             </button></form>
             
-            <form id='deleteform' action='../../actions/grades/delete_grades.php?email=".$row['STUDENT_EPITA_EMAIL']."' method='POST'>
+            <form id='deleteform' action='../../actions/grades/delete_grades.php?email=".$row['STUDENT_EPITA_EMAIL']."&course=".$course."' method='POST'>
                 <button type='submit' name='delete' class='delete' onclick='return confirmation()' style='border: none; background-color: transparent;'>
                     <img src='../../connectionquery/images/delete.png' style='width: 20px; height: 20px;'>
                 </button>
@@ -65,7 +70,7 @@ function get_grades_by_course_and_population ($course, $progname, $yearr, $speri
 
     echo("<script>
     function confirmation() {
-        return confirm('Are you sure you want to delete this student?');
+        return confirm('Are you sure you want to delete the grade for the student?');
     }
     </script>");
 

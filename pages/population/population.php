@@ -30,7 +30,7 @@ if (!isset($_SESSION['id'])) {
         </div>
     </div>   
 
-    <h1>WELCOME THOMAS</h1><br>
+    <h1>WELCOME <?php echo $_SESSION["name"];  ?></h1><br>
     <div class="wrapper">
         <section class="students">
             <div class="col-md-6"> <!-- First table container -->
@@ -46,10 +46,10 @@ if (!isset($_SESSION['id'])) {
                             <div class="search-input-wrapper">
                                 <input type="text" name="searchstudent" id="searchstudent" value="<?php echo isset($_POST['searchstudent']) ? htmlspecialchars($_POST['searchstudent']) : ''; ?>" placeholder="Search by first name or last name..." class="form-control search-input">
                                 <button class="btn  search-btn" type="submit" name="searchstudentbtn" >
-                                    <img src="https://cdn-icons-png.flaticon.com/128/751/751463.png" alt="Search" class="search-icon">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/151/151773.png" alt="Search" class="search-icon">
                                 </button>
                             </div>
-                        
+                    
                         </form>
                         <form method="post" id="searchform">
                             <div>
@@ -63,13 +63,13 @@ if (!isset($_SESSION['id'])) {
                         
                     </div>
                         <div class="containers">
-                        <table class="table table-striped table-blue student"  border="1px solid black">
+                        <table class="table table-striped table-blue student"  border="1px solid black" style="font-size: 18px;"  >
                             <tr>
-                                <th>FIRST NAME</th>
-                                <th>LAST NAME</th>
-                                <th>EPITA EMAIL</th>
-                                <th>PASSES/TOTAL</th>
-                                <th>ACTION</th>
+                            <th><strong>FIRST NAME</strong></th>
+                            <th><strong>LAST NAME</strong></th>
+                            <th><strong>EPITA EMAIL</strong></th>
+                            <th><strong>PASSES/TOTAL</strong></th>
+                            <th><strong>ACTION</strong></th>
                             </tr>
                             <?php
                             /*
@@ -166,7 +166,7 @@ if (!isset($_SESSION['id'])) {
                     <div class="search-input-wrapper">
                         <input type="text" name="searchcourse" id="searchcourse" value="<?php echo isset($_POST['searchcourse']) ? htmlspecialchars($_POST['searchcourse']) : ''; ?>" placeholder="Search the course" class="form-control search-input">
                         <button class="btn  search-btn" type="submit" name="searchcoursebtn">
-                            <img src="https://cdn-icons-png.flaticon.com/128/751/751463.png" alt="Search" class="search-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/128/151/151773.png" alt="Search" class="search-icon">
                         </button>
                     </div>
                 </form>
@@ -178,11 +178,12 @@ if (!isset($_SESSION['id'])) {
                 </button>
             </div>
                     <div class="containers">
-                        <table class="table table-striped table-blue coursegrade" border="1px solid black">
+                        <table class="table table-striped table-blue coursegrade" border="1px solid black" style="font-size: 18px;">
                             
-                                <th>PROGRAM_ASSIGNMENT</th>
-                                <th>SESSION_COURSE_REF</th>
-                                <th>SESSION COUNT</th>
+                        <th><strong>PROGRAM_ASSIGNMENT</strong></th>
+                        <th><strong>SESSION_COURSE_REF</strong></th>
+                        <th><strong>SESSION COUNT</strong></th>
+
                             
                             <?php
                             /*

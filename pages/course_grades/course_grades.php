@@ -40,13 +40,13 @@ $speriod = $_GET['period'];
         </div>
     </div>   
     </div>
-    <h1>WELCOME THOMAS</h1><br>
+    <h1>WELCOME <?php echo $_SESSION["name"];  ?></h1><br>
     <section>
         <header>
             <h2>Grades</h2>
         </header>
         <div= class="container">
-        <table class="table table-striped table-blue grade"  border="1px solid black">
+        <table class="table table-striped table-blue grade"  border="1px solid black" style="font-size: 18px;">
             <tr>
                 <th><STRONG>EPITA EMAIL</STRONG></th>
                 <Th><STRONG>FIRST NAME</STRONG></Th>

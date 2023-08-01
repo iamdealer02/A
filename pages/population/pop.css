@@ -38,10 +38,7 @@ h1 {
     justify-content: space-around;
  
 }
-.coursegrade,
-.student{
-  width: 30%;
-}
+
 .students,
 .courses {
     flex: 1;
@@ -66,9 +63,11 @@ h1 {
     margin-right: 10%;
   }
 
+
 .table-blue {
     background-color: #e7f3fc; /* Replace this color with your desired shade of blue */
     font-weight: 600;
+    font-size: 15px;
     border: 1px solid black;
 }
 .table th{

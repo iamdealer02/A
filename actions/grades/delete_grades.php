@@ -4,15 +4,14 @@ if (isset($_POST['delete'])) {
 
     // Call the db_connect function to get the database connection object
     $conn = db_connect();
-
-
-    // Use proper escaping or prepared statements to prevent SQL injection
-    $STUDENT_EPITA_EMAIL = $conn->real_escape_string($_GET['email']);
+    $STUDENT_EPITA_EMAIL = $_GET['email'];
+    $course_code = $_GET['course'];
 
     //Deleting all existing data related to the student.
-    $sql = "UPDATE GRADES
+    $sql = "UPDATE GRADES g
     SET g.grade_exam_type_ref='ADMIN_OVERRIDE', g.GRADE_SCORE=NULL
-    WHERE g.grade_student_epita_email_ref = '".$STUDENT_EPITA_EMAIL."'";
+    WHERE g.grade_student_epita_email_ref = '".$STUDENT_EPITA_EMAIL."' 
+    AND GRADE_COURSE_CODE_REF = '".$course_code."' ";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: " .  $_SERVER['HTTP_REFERER']);
